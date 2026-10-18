@@ -12,7 +12,6 @@ venv/
 .env.local
 
 # Dependencies
-uv.lock
 node_modules/
 
 # OS
@@ -22,3 +21,4 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.agent/skills/

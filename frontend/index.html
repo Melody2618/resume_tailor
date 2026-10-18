@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Tailor — Truthful AI Bullet Optimizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="App navigation">
+      <div class="brand">
+        <div class="brand-bar" aria-hidden="true"></div>
+        <div>
+          <h1 class="app-title">Resume Tailor</h1>
+          <p class="app-subtitle">Upgrade your bullets for the job. 100% truthful, zero hallucinated facts.</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Quick actions">
+        <button id="try-sample-btn" type="button" class="sidebar-link" aria-label="Load demo sample text">
+          Try a sample
+        </button>
+        <button id="clear-btn" type="button" class="sidebar-link" aria-label="Clear all inputs">
+          Clear all
+        </button>
+      </nav>
+
+      <div class="truth-badge" role="note" aria-label="Truthfulness guarantee">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Zero Hallucinated Facts
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="workspace">
+
+      <!-- Input Grid -->
+      <section aria-label="Resume and Job Description Inputs">
+        <div class="input-grid">
+
+          <!-- Resume Bullets -->
+          <div class="input-block" id="card-resume">
+            <label for="resume-input" class="section-label">Your Experience Bullets</label>
+            <p class="input-microcopy">Paste 3–10 bullets from your current resume (max 12,000 characters)</p>
+            <textarea
+              id="resume-input"
+              placeholder="• Worked on API performance and fixed database queries&#10;• Built automated test suite for order processing service&#10;• Maintained CI/CD deployment pipelines on AWS infrastructure"
+              rows="9"
+              aria-describedby="resume-count resume-error"
+            ></textarea>
+            <div class="field-footer">
+              <span id="resume-error" class="field-error" role="alert" aria-live="polite"></span>
+              <span id="resume-count" class="char-count">0 / 12,000</span>
+            </div>
+          </div>
+
+          <!-- Job Description -->
+          <div class="input-block" id="card-jd">
+            <label for="jd-input" class="section-label">Target Job Description</label>
+            <p class="input-microcopy">Paste the responsibilities and requirements (max 12,000 characters)</p>
+            <textarea
+              id="jd-input"
+              placeholder="We are looking for a Software Engineer to lead API performance optimization, expand automated test coverage, and manage AWS deployment pipelines..."
+              rows="9"
+              aria-describedby="jd-count jd-error"
+            ></textarea>
+            <div class="field-footer">
+              <span id="jd-error" class="field-error" role="alert" aria-live="polite"></span>
+              <span id="jd-count" class="char-count">0 / 12,000</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- Action Bar -->
+      <section class="action-bar" id="action-bar">
+        <button id="tailor-btn" type="button" class="btn btn-primary" aria-label="Tailor Bullets">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-text">Tailor Bullets</span>
+        </button>
+      </section>
+
+      <!-- Global Error Banner -->
+      <div id="error-banner" class="alert-banner hidden" role="alert">
+        <div class="alert-content">
+          <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span id="error-message">Unable to tailor bullets right now. Your text is safe — click Retry to try again.</span>
+        </div>
+        <button id="retry-btn" type="button" class="btn-outline">Retry</button>
+      </div>
+
+      <!-- Results Section -->
+      <section id="results-section" class="results-section hidden" aria-live="polite">
+        <div class="results-header">
+          <h2 class="results-title">Tailored Bullets</h2>
+          <p class="results-subtitle">Original facts preserved. Phrasing sharpened for the role.</p>
+        </div>
+
+        <!-- Skeleton Loader -->
+        <div id="skeleton-container" class="skeleton-container hidden">
+          <div class="skeleton-card">
+            <div class="skeleton-split">
+              <div class="skeleton-box"></div>
+              <div class="skeleton-box"></div>
+            </div>
+            <div class="skeleton-tag"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-split">
+              <div class="skeleton-box"></div>
+              <div class="skeleton-box"></div>
+            </div>
+            <div class="skeleton-tag"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-split">
+              <div class="skeleton-box"></div>
+              <div class="skeleton-box"></div>
+            </div>
+            <div class="skeleton-tag"></div>
+          </div>
+        </div>
+
+        <!-- Rendered Cards -->
+        <div id="cards-container" class="cards-container"></div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <p>Text only, no accounts, stateless, 100% truthful.</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
